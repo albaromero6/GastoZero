@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GastoZero — Nueva entrada</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/themes/airbnb.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="grain-overlay"></div>
+
+    <header class="app-header">
+        <div class="header-content">
+            <h1 class="app-title">
+                GastoZero
+                <img class="title-icon" src="img/logo.png" alt="GastoZero logo">
+            </h1>
+        </div>
+    </header>
+
+    <main class="container form-page-container">
+
+        <div class="form-page-card">
+
+            <div class="form-page-header">
+                <div class="form-page-header-text">
+                    <h2 class="form-page-title" id="form-page-title">Añadir ingreso</h2>
+                </div>
+            </div>
+
+            <form id="entry-form" novalidate>
+                <input type="hidden" id="entry-id">
+                <input type="hidden" id="entry-type" value="income">
+
+                <div class="form-body">
+
+                    <div class="form-group">
+                        <label for="entry-concept">Concepto</label>
+                        <div class="select-wrapper">
+                            <select id="entry-concept"></select>
+                            <span class="select-arrow">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                            </span>
+                        </div>
+                        <input type="text" id="entry-concept-other" placeholder="Describe el concepto" style="display:none; margin-top: 0.6rem;">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="entry-amount">Cantidad</label>
+                            <div class="input-with-currency">
+                                <input type="number" id="entry-amount" step="0.01" min="0.01"
+                                        placeholder="0,00" required
+                                        inputmode="decimal"
+                                        onkeypress="return event.charCode >= 48 && event.charCode <= 57 || event.charCode === 46 || event.charCode === 44">
+                                <span class="currency-symbol">€</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="entry-date">Fecha</label>
+                            <input type="text" id="entry-date" required readonly placeholder="dd/mm/aaaa">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn primary" id="save-btn">
+                        <span id="save-btn-text">Guardar entrada</span>
+                    </button>
+                    <a href="index.html" class="btn secondary">Cancelar</a>
+                </div>
+
+            </form>
+
+        </div>
+
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/l10n/es.js"></script>
+    <script src="form.js"></script>
+</body>
+</html>

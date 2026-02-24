@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GastoZero</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="grain-overlay"></div>
+
+    <header class="app-header">
+        <div class="header-content">
+            <h1 class="app-title">
+                GastoZero
+                <img class="title-icon" src="img/logo.png" alt="GastoZero logo">
+            </h1>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <!-- Selector de mes -->
+        <section class="month-selector">
+            <label>Período</label>
+            <div class="month-picker">
+                <button type="button" class="month-nav" id="month-prev">‹</button>
+                <div class="month-display" id="month-display"></div>
+                <button type="button" class="month-nav" id="month-next">›</button>
+            </div>
+            <input type="month" id="month" style="display:none;">
+        </section>
+
+        <!-- Resumen -->
+        <section class="summary">
+            <div class="card income">
+                <div class="card-content">
+                    <h3>Ingresos</h3>
+                    <p class="amount" id="total-income">0 €</p>
+                </div>
+            </div>
+            <div class="card expense">
+                <div class="card-content">
+                    <h3>Gastos</h3>
+                    <p class="amount" id="total-expense">0 €</p>
+                </div>
+            </div>
+            <div class="card balance">
+                <div class="card-content">
+                    <h3>Balance</h3>
+                    <p class="amount" id="balance">0 €</p>
+                </div>
+                <button class="balance-download-btn" id="balance-download-btn" title="Descargar resumen PDF">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                </button>
+            </div>
+        </section>
+
+        <!-- Tabla unificada con tabs -->
+        <section class="section">
+            <div class="section-header">
+                <div class="tab-group">
+                    <button class="tab active" id="tab-income" data-tab="income">Ingresos</button>
+                    <button class="tab" id="tab-expense" data-tab="expense">Gastos</button>
+                </div>
+                <button class="btn add" id="add-entry-btn">
+                    <span class="btn-icon">+</span>
+                    <span>Añadir</span>
+                </button>
+            </div>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Concepto</th>
+                            <th>Fecha</th>
+                            <th>Cantidad</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="main-table-body">
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="table-footer" id="table-footer" style="display:none;">
+                <button class="btn secondary" id="download-pdf-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    Descargar PDF
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Modal de confirmación de borrado -->
+    <div class="modal-overlay" id="delete-modal">
+        <div class="modal">
+            <div class="modal-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/>
+                </svg>
+            </div>
+            <p class="modal-subtitle" id="modal-subtitle"></p>
+            <div class="modal-actions">
+                <button class="btn primary modal-confirm" id="modal-confirm">Aceptar</button>
+                <button class="btn secondary modal-cancel" id="modal-cancel">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="app-footer">
+        <span>Diseñado y desarrollado por <strong>Alba Romero</strong></span>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
